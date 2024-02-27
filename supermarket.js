@@ -29,12 +29,12 @@ function calculateTotalPrice(cart) {
     // Offre sur les pommes : une achetée, une offerte
     const appleQuantity = cart.pomme || 0;
     const freeApples = Math.floor(appleQuantity / 2);
-    cart.pomme += freeApples;
+    cart.pomme -= freeApples;
   
     // Offre sur les pastèques : 3 pour le prix de 2
     const watermelonQuantity = cart.pastèque || 0;
     const extraWatermelons = Math.floor(watermelonQuantity / 3);
-    cart.pastèque += extraWatermelons;
+    cart.pastèque -= extraWatermelons;
   
     return cart;
   }

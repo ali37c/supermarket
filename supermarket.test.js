@@ -7,19 +7,19 @@ test('calculateTotalPrice without special offers', () => {
     orange: 3,
     pastèque: 5,
   };
-  expect(calculateTotalPrice(cart)).toBe(6.4);
+  expect(calculateTotalPrice(cart)).toBe(6.3);
 });
 
 // Test d'application des offres spéciales
 test('applySpecialOffers', () => {
   const cart = {
-    pomme: 4,
-    orange: 3,
-    pastèque: 5,
+    pomme: 4, //0.2 per unit
+    orange: 3,  //0.5 per unit
+    pastèque: 5, //0.8 per unit
   };
   const updatedCart = applySpecialOffers(cart);
-  expect(updatedCart.pomme).toBe(6); // 4 achetées + 2 gratuites
-  expect(updatedCart.pastèque).toBe(6); // 5 achetées + 1 gratuite
+  expect(updatedCart.pomme).toBe(2); // 2 paid ( 2 free)
+  expect(updatedCart.pastèque).toBe(4); // 4 paid ( 1 free)
 });
 
 // Test de calcul du prix total avec offres spéciales appliquées
@@ -30,5 +30,5 @@ test('calculateTotalPrice with special offers', () => {
     pastèque: 5,
   };
   const updatedCart = applySpecialOffers(cart);
-  expect(calculateTotalPrice(updatedCart)).toBe(7.4);
+  expect(calculateTotalPrice(updatedCart)).toBe(5.1);
 });
